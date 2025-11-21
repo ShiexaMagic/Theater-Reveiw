@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
+/* CSS Variables generated from Kigen.design */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --picton-blue-50: #e4f3fe;
+  --picton-blue-100: #c6e6fd;
+  --picton-blue-200: #8fd3fb;
+  --picton-blue-300: #43c3f9;
+  --picton-blue-400: #36b0e2;
+  --picton-blue-500: #2d96c1;
+  --picton-blue-600: #237a9e;
+  --picton-blue-700: #185c78;
+  --picton-blue-800: #0d3f53;
+  --picton-blue-900: #04222e;
+  --picton-blue-950: #02131b;
+  
+  --background: #f9fafb;
+  --foreground: var(--picton-blue-950);
+  --primary: var(--picton-blue-500);
+  --primary-hover: var(--picton-blue-600);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-noto-georgian), Arial, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
