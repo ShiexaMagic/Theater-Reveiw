@@ -78,7 +78,8 @@ const handler = NextAuth({
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || 'fallback-secret-for-development-only-change-in-production',
+  debug: process.env.NODE_ENV === 'development',
 });
 
 export { handler as GET, handler as POST };
