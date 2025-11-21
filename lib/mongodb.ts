@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGODB_URI = process.env.MONGODB_URI || '';
 
-if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable');
+// Only throw error during runtime, not during build
+if (!MONGODB_URI && process.env.NODE_ENV !== 'production') {
+  console.warn('⚠️ MONGODB_URI not defined - database features will be disabled');
 }
 
 interface CachedConnection {
@@ -18,6 +19,12 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  // If no MongoDB URI, return null (demo mode)
+  if (!MONGODB_URI) {
+    console.warn('⚠️ Running in demo mode - no database connection');
+    return null;
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
